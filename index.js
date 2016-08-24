@@ -242,26 +242,31 @@ const styles = StyleSheet.create({
     textValidThru: {
         fontSize: 8,
         color: '#ddd',
-        fontWeight: '900'
+        fontWeight: '900',
+        backgroundColor: 'transparent',
     },
     textSmall: {
         fontSize: 8,
         color: '#ddd',
-        fontWeight: '900'
+        fontWeight: '900',
+        backgroundColor: 'transparent',
     },
     textNumber: {
         color: '#fff',
         fontSize: 22,
         textAlign: 'center',
         marginBottom: 10,
+        backgroundColor: 'transparent',
     },
     textName: {
         color: '#fff',
-        fontSize: 14
+        fontSize: 14,
+        backgroundColor: 'transparent',
     },
     textExpiry: {
         color: '#fff',
-        fontSize: 16
+        fontSize: 16,
+        backgroundColor: 'transparent',
     },
     front: {
         flex: 1
