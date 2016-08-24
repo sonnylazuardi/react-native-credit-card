@@ -2,13 +2,13 @@
 
 ### A better credit card form for React Native
 
-React native port of the display part of Card by [@jessepollak](https://github.com/jessepollak/card)
+React native port of the display of Card by [@jessepollak](https://github.com/jessepollak/card)
 
 ![rn-credit-card](http://i.giphy.com/26gJznmOI4qQSA2UE.gif)
 
 #### Background
 
-There is a [react port of Card](https://github.com/JohnyDays/react-credit-card), but it still renders on browser DOM (which is not as good as native view), so this library will take advantage of those.
+This is a react native port of Card. There is a [react port of Card](https://github.com/JohnyDays/react-credit-card), but it still renders on browser DOM (which is not as good as native view), so this library will take advantage of both.
 
 #### Goals
 
