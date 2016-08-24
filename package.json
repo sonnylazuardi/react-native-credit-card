@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/sonnylazuardi/react-native-credit-card#readme",
   "dependencies": {
-    "payment": "^2.0.3"
+    "payment": "^2.0.3",
+    "react-native-flip-card": "^3.3.0"
   }
 }

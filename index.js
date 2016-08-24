@@ -7,6 +7,7 @@ const {
 } = React;
 
 import Payment from 'payment';
+import FlipCard from 'react-native-flip-card';
 
 import {
     View,
@@ -19,7 +20,7 @@ import {
 const images = require('./card-images');
 const validate = Payment.fns;
 
-class CardView extends Component {
+class CreditCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -127,39 +128,50 @@ class CardView extends Component {
     render() {
         const isAmex = this.state.type && this.state.type.name === "amex";
         return (
-            <View style={[styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}]}>
-                <View style={this.props.focused == "cvc" && !isAmex ? styles.flipped : styles.default}>
-
-                    <View style={styles.front}>
-                        <View style={styles.lower}>
-                            <View style={styles.shiny} />
-                            <Image
-                                 style={styles.logo}
-                                 source={{uri: images[this.props.type ? this.props.type : this.state.type.name]}}
-                            />
-                            {isAmex ? 
-                                <View style={styles.cvc_front}>
-                                    <Text style={styles.text}>{this.getValue("cvc")}</Text>
+            <FlipCard 
+                style={styles.card}
+                friction={6}
+                perspective={1000}
+                flipHorizontal={true}
+                flipVertical={false}
+                flip={false}
+                clickable={true}
+                onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
+                >
+                <View style={styles.front}>
+                    <View style={[styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}]}>
+                        <View style={this.props.focused == "cvc" && !isAmex ? styles.flipped : styles.default}>
+                            <View style={styles.lower}>
+                                <View style={styles.shiny} />
+                                <Image
+                                     style={styles.logo}
+                                     source={{uri: images[this.props.type ? this.props.type : this.state.type.name]}}
+                                />
+                                {isAmex ? 
+                                    <View style={styles.cvc_front}>
+                                        <Text style={styles.text}>{this.getValue("cvc")}</Text>
+                                    </View>
+                                    : null}
+                                <View style={styles.number}><Text style={styles.text}>{this.getValue("number")}</Text></View>
+                                <View style={styles.name}><Text style={styles.text}>{this.getValue("name")}</Text></View>
+                                <View
+                                    style={styles.expiry}
+                                    data-before={this.props.expiryBefore}
+                                    data-after={this.props.expiryAfter}>
+                                    <Text style={styles.text}>{this.getValue("expiry")}</Text>
                                 </View>
-                                : null}
-                            <View style={styles.number}><Text style={styles.text}>{this.getValue("number")}</Text></View>
-                            <View style={styles.name}><Text style={styles.text}>{this.getValue("name")}</Text></View>
-                            <View
-                                style={styles.expiry}
-                                data-before={this.props.expiryBefore}
-                                data-after={this.props.expiryAfter}>
-                                <Text style={styles.text}>{this.getValue("expiry")}</Text>
                             </View>
                         </View>
                     </View>
-
-                    <View style={styles.back}>
+                </View>
+                <View style={styles.back}>
+                    <View style={[styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}]}>
                         <View style={styles.bar}/>
                         <View style={styles.cvc}><Text style={styles.text}>{this.getValue("cvc")}</Text></View>
                         <View style={styles.shiny} data-after={this.props.shinyAfterBack}/>
                     </View>
                 </View>
-            </View>
+            </FlipCard>
         );
     }
 }
@@ -177,7 +189,7 @@ const styles = StyleSheet.create({
     }
 });
 
-CardView.defaultProps = {
+CreditCard.defaultProps = {
     number: null,
     cvc: null,
     name: '',
@@ -192,4 +204,4 @@ CardView.defaultProps = {
     bgColor: '#191278',
 };
 
-module.exports = CardView;
+module.exports = CreditCard;
