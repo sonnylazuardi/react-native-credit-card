@@ -129,62 +129,64 @@ class CreditCard extends Component {
         const isAmex = this.state.type && this.state.type.name === "amex";
         const cardStyle = [styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style];
         return (
-            <FlipCard 
-                style={cardStyle}
-                friction={6}
-                perspective={1000}
-                flipHorizontal={true}
-                flipVertical={false}
-                flip={this.props.focused === 'cvc'}
-                clickable={true}
-                onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
-                >
-                <View style={styles.front}>
-                    {this.props.imageFront ?
-                        <Image source={this.props.imageFront} style={[styles.bgImage, {width: this.props.width, height: this.props.height}]} />
-                        : null}
-                    <View style={styles.lower}>
-                        {this.props.shiny ?
-                            <View style={styles.shinyFront} />
+            <View style={styles.cardStyle}>
+                <FlipCard
+                    style={[styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style]}
+                    friction={6}
+                    perspective={1000}
+                    flipHorizontal={true}
+                    flipVertical={false}
+                    flip={this.props.focused === 'cvc'}
+                    clickable={true}
+                    onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
+                    >
+                    <View style={[styles.front, {width: this.props.width, height: this.props.height}]}>
+                        {this.props.imageFront ?
+                            <Image source={this.props.imageFront} style={[styles.bgImage, {width: this.props.width, height: this.props.height}]} />
                             : null}
-                        <Image
-                             style={styles.logo}
-                             source={{uri: images[this.props.type ? this.props.type : this.state.type.name]}}
-                        />
-                        {isAmex ? 
-                            <View style={styles.cvcFront}>
-                                <Text style={styles.text}>{this.getValue("cvc")}</Text>
-                            </View>
-                            : null}
-                        <View style={styles.info}>
-                            <View style={styles.number}><Text style={styles.textNumber}>{this.getValue("number")}</Text></View>
-                            <View style={styles.rowWrap}>
-                                <View style={styles.name}><Text style={styles.textName}>{this.getValue("name")}</Text></View>
-                                <View style={styles.validthru}><Text style={styles.textValidThru}>VALID THRU</Text></View>
-                                <View
-                                    style={styles.expiry}
-                                    data-before={this.props.expiryBefore}
-                                    data-after={this.props.expiryAfter}>
-                                    <Text style={styles.textSmall}>MONTH/YEAR</Text>
-                                    <Text style={styles.textExpiry}>{this.getValue("expiry")}</Text>
+                        <View style={styles.lower}>
+                            {this.props.shiny ?
+                                <View style={styles.shinyFront} />
+                                : null}
+                            <Image
+                                 style={styles.logo}
+                                 source={{uri: images[this.props.type ? this.props.type : this.state.type.name]}}
+                            />
+                            {isAmex ? 
+                                <View style={styles.cvcFront}>
+                                    <Text style={styles.text}>{this.getValue("cvc")}</Text>
+                                </View>
+                                : null}
+                            <View style={styles.info}>
+                                <View style={styles.number}><Text style={styles.textNumber}>{this.getValue("number")}</Text></View>
+                                <View style={styles.rowWrap}>
+                                    <View style={styles.name}><Text style={styles.textName}>{this.getValue("name")}</Text></View>
+                                    <View style={styles.validthru}><Text style={styles.textValidThru}>VALID THRU</Text></View>
+                                    <View
+                                        style={styles.expiry}
+                                        data-before={this.props.expiryBefore}
+                                        data-after={this.props.expiryAfter}>
+                                        <Text style={styles.textSmall}>MONTH/YEAR</Text>
+                                        <Text style={styles.textExpiry}>{this.getValue("expiry")}</Text>
+                                    </View>
                                 </View>
                             </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.back}>
-                    {this.props.imageBack ?
-                        <Image source={this.props.imageBack} style={[styles.bgImage, {width: this.props.width, height: this.props.height}]} />
-                        : null}
-                    {this.props.bar ?
-                        <View style={styles.bar}/>
-                        : null}
-                    <View style={styles.cvc}><Text style={styles.textCvc}>{this.getValue("cvc")}</Text></View>
-                    {this.props.shiny ?
-                        <View style={styles.shinyBack} data-after={this.props.shinyAfterBack}/>
-                        : null}
-                </View>
-            </FlipCard>
+                    <View style={[styles.back, {width: this.props.width, height: this.props.height}]}>
+                        {this.props.imageBack ?
+                            <Image source={this.props.imageBack} style={[styles.bgImage, {width: this.props.width, height: this.props.height}]} />
+                            : null}
+                        {this.props.bar ?
+                            <View style={styles.bar}/>
+                            : null}
+                        <View style={styles.cvc}><Text style={styles.textCvc}>{this.getValue("cvc")}</Text></View>
+                        {this.props.shiny ?
+                            <View style={styles.shinyBack} data-after={this.props.shinyAfterBack}/>
+                            : null}
+                    </View>
+                </FlipCard>
+            </View>
         );
     }
 }
@@ -192,7 +194,8 @@ class CreditCard extends Component {
 const styles = StyleSheet.create({
     container: {
         borderRadius: 8,
-        borderWidth: 0
+        borderWidth: 0,
+        flex: 1,
     },
     logo: {
         height: 35,
@@ -248,12 +251,13 @@ const styles = StyleSheet.create({
     },
     textNumber: {
         color: '#fff',
-        fontSize: 28,
+        fontSize: 22,
+        textAlign: 'center',
         marginBottom: 10,
     },
     textName: {
         color: '#fff',
-        fontSize: 16
+        fontSize: 14
     },
     textExpiry: {
         color: '#fff',
@@ -272,8 +276,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        right: 20,
-        top: 85
+        right: 15,
+        top: 76
     },
     textCvc: {
         color: '#000',
@@ -320,9 +324,11 @@ CreditCard.defaultProps = {
     expiryAfter: 'valid thru',
     shinyAfterBack: '',
     type: null,
-    width: 320,
-    height: 200,
+    width: 300,
+    height: 180,
     bgColor: '#191278',
 };
+
+CreditCard.CardImages = images;
 
 module.exports = CreditCard;
