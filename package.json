@@ -1,0 +1,29 @@
+{
+  "name": "react-native-credit-card",
+  "version": "0.1.5",
+  "description": "React native credit card input component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonnylazuardi/react-native-credit-card.git"
+  },
+  "keywords": [
+    "react-native",
+    "credit-card",
+    "flip",
+    "card",
+    "component"
+  ],
+  "author": "sonnylazuardi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sonnylazuardi/react-native-credit-card/issues"
+  },
+  "homepage": "https://github.com/sonnylazuardi/react-native-credit-card#readme",
+  "dependencies": {
+    "payment": "^2.0.3"
+  }
+}
