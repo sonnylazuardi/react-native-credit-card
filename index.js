@@ -90,14 +90,14 @@ class CreditCard extends Component {
         if (this.props.name === "") {
             return "FULL NAME";
         } else {
-            return this.props.name;
+            return this.props.name.toUpperCase();
         }
     }
     expiry() {
         if (this.props.expiry === "") {
             return "••/••";
         } else {
-            let expiry = this.props.expiry.toString();
+            var expiry = this.props.expiry.toString();
 
             const expiryMaxLength = 6;
 
@@ -127,7 +127,7 @@ class CreditCard extends Component {
 
     render() {
         const isAmex = this.state.type && this.state.type.name === "amex";
-        const cardStyle = [styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}];
+        const cardStyle = [styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style];
         return (
             <FlipCard 
                 style={cardStyle}
@@ -135,38 +135,54 @@ class CreditCard extends Component {
                 perspective={1000}
                 flipHorizontal={true}
                 flipVertical={false}
-                flip={false}
+                flip={this.props.focused === 'cvc'}
                 clickable={true}
                 onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
                 >
                 <View style={styles.front}>
-                    <View style={this.props.focused == "cvc" && !isAmex ? styles.flipped : styles.default}>
-                        <View style={styles.lower}>
-                            <View style={styles.shiny} />
-                            <Image
-                                 style={styles.logo}
-                                 source={{uri: images[this.props.type ? this.props.type : this.state.type.name]}}
-                            />
-                            {isAmex ? 
-                                <View style={styles.cvc_front}>
-                                    <Text style={styles.text}>{this.getValue("cvc")}</Text>
+                    {this.props.imageFront ?
+                        <Image source={this.props.imageFront} style={[styles.bgImage, {width: this.props.width, height: this.props.height}]} />
+                        : null}
+                    <View style={styles.lower}>
+                        {this.props.shiny ?
+                            <View style={styles.shinyFront} />
+                            : null}
+                        <Image
+                             style={styles.logo}
+                             source={{uri: images[this.props.type ? this.props.type : this.state.type.name]}}
+                        />
+                        {isAmex ? 
+                            <View style={styles.cvcFront}>
+                                <Text style={styles.text}>{this.getValue("cvc")}</Text>
+                            </View>
+                            : null}
+                        <View style={styles.info}>
+                            <View style={styles.number}><Text style={styles.textNumber}>{this.getValue("number")}</Text></View>
+                            <View style={styles.rowWrap}>
+                                <View style={styles.name}><Text style={styles.textName}>{this.getValue("name")}</Text></View>
+                                <View style={styles.validthru}><Text style={styles.textValidThru}>VALID THRU</Text></View>
+                                <View
+                                    style={styles.expiry}
+                                    data-before={this.props.expiryBefore}
+                                    data-after={this.props.expiryAfter}>
+                                    <Text style={styles.textSmall}>MONTH/YEAR</Text>
+                                    <Text style={styles.textExpiry}>{this.getValue("expiry")}</Text>
                                 </View>
-                                : null}
-                            <View style={styles.number}><Text style={styles.text}>{this.getValue("number")}</Text></View>
-                            <View style={styles.name}><Text style={styles.text}>{this.getValue("name")}</Text></View>
-                            <View
-                                style={styles.expiry}
-                                data-before={this.props.expiryBefore}
-                                data-after={this.props.expiryAfter}>
-                                <Text style={styles.text}>{this.getValue("expiry")}</Text>
                             </View>
                         </View>
                     </View>
                 </View>
                 <View style={styles.back}>
-                    <View style={styles.bar}/>
-                    <View style={styles.cvc}><Text style={styles.text}>{this.getValue("cvc")}</Text></View>
-                    <View style={styles.shiny} data-after={this.props.shinyAfterBack}/>
+                    {this.props.imageBack ?
+                        <Image source={this.props.imageBack} style={[styles.bgImage, {width: this.props.width, height: this.props.height}]} />
+                        : null}
+                    {this.props.bar ?
+                        <View style={styles.bar}/>
+                        : null}
+                    <View style={styles.cvc}><Text style={styles.textCvc}>{this.getValue("cvc")}</Text></View>
+                    {this.props.shiny ?
+                        <View style={styles.shinyBack} data-after={this.props.shinyAfterBack}/>
+                        : null}
                 </View>
             </FlipCard>
         );
@@ -175,14 +191,122 @@ class CreditCard extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
+        borderRadius: 8,
+        borderWidth: 0
     },
     logo: {
         height: 35,
-        width: 57
+        width: 57,
+        position: 'absolute',
+        top: 20,
+        right: 20
     },
     text: {
         color: '#fff'
+    },
+    bgImage: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        right: 0,
+        borderRadius: 8
+    },
+    lower: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        paddingVertical: 20,
+        paddingHorizontal: 20
+    },
+    expiry: {
+        flex: 1,
+        alignItems: 'flex-end',
+        justifyContent: 'center'
+    },
+    rowWrap: {
+        flexDirection: 'row',
+    },
+    name: {
+        flex: 2,
+        justifyContent: 'center'
+    },
+    validthru: {
+        flex: 1,
+        alignItems: 'flex-end',
+        justifyContent: 'center'
+    },
+    textValidThru: {
+        fontSize: 8,
+        color: '#ddd',
+        fontWeight: '900'
+    },
+    textSmall: {
+        fontSize: 8,
+        color: '#ddd',
+        fontWeight: '900'
+    },
+    textNumber: {
+        color: '#fff',
+        fontSize: 28,
+        marginBottom: 10,
+    },
+    textName: {
+        color: '#fff',
+        fontSize: 16
+    },
+    textExpiry: {
+        color: '#fff',
+        fontSize: 16
+    },
+    front: {
+        flex: 1
+    },
+    back: {
+        flex: 1
+    },
+    cvc: {
+        width: 45,
+        height: 30,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        right: 20,
+        top: 85
+    },
+    textCvc: {
+        color: '#000',
+        fontSize: 18
+    },
+    info: {
+        flex: 1,
+    },
+    shinyFront: {
+        backgroundColor: '#ddd',
+        borderRadius: 8,
+        width: 50,
+        height: 40,
+        position: 'absolute',
+        top: 15,
+        left: 20
+    },
+    shinyBack: {
+        backgroundColor: '#ddd',
+        borderRadius: 8,
+        width: 50,
+        height: 40,
+        position: 'absolute',
+        bottom: 15,
+        left: 20
+    },
+    bar: {
+        height: 40,
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 30,
+        backgroundColor: '#000'
     }
 });
 
@@ -196,7 +320,7 @@ CreditCard.defaultProps = {
     expiryAfter: 'valid thru',
     shinyAfterBack: '',
     type: null,
-    width: 350,
+    width: 320,
     height: 200,
     bgColor: '#191278',
 };
