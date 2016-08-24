@@ -43,6 +43,10 @@ import CreditCard from 'react-native-credit-card';
 - `name`: string (max 2 lines)
 - `number`: credit card number(max 16 characters, will cut the rest)
 - `expiry`: number(max 4 characters, will cut the rest) 
+- `imageFront`: image(image file for the card front card background -- with require) 
+- `imageBack`: image(image file for the card back card background -- with require) 
+- `shiny`: boolean(show sticker) 
+- `bar`: boolean(show bar on the back) 
 - `focused`: one of the above fields
   - type
   - name
