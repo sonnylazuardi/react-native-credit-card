@@ -15,6 +15,13 @@ This is a react native port of Card. There is a [react port of Card](https://git
 - Look like Card.
 - Provide a react interface for displaying credit card information.
 
+#### Design Resources
+
+I got the design resources from the [Ramakrishna V's dribbble](https://dribbble.com/shots/2177105-Checkout-Flow-Card)
+
+![design](https://d13yacurqjgara.cloudfront.net/users/484057/screenshots/2177105/checkout_generic.gif)
+
+
 #### Usage
 
 - `npm install --save react-native-credit-card`
