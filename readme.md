@@ -8,7 +8,7 @@ React native port of the display of Card by [@jessepollak](https://github.com/je
 
 #### Demo
 
-![https://exp.host/@sonnylazuardi/react-native-credit-card-demos](https://exp.host/@sonnylazuardi/react-native-credit-card-demos)
+[https://exp.host/@sonnylazuardi/react-native-credit-card-demos](https://exp.host/@sonnylazuardi/react-native-credit-card-demos)
 
 #### Background
 
