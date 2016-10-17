@@ -4,7 +4,7 @@
 
 React native port of the display of Card by [@jessepollak](https://github.com/jessepollak/card)
 
-![rn-credit-card](http://i.giphy.com/26gJznmOI4qQSA2UE.gif) ![rn-ios](http://i.giphy.com/l0MYFGQxfygHtBN84.gif)
+![rn-credit-card](https://cdn.rawgit.com/sonnylazuardi/react-native-credit-card/master/demo.gif) ![rn-ios](http://i.giphy.com/l0MYFGQxfygHtBN84.gif)
 
 #### Background
 
