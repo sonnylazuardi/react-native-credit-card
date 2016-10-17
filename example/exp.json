@@ -6,9 +6,9 @@
   "version": "1.0.0",
   "orientation": "portrait",
   "primaryColor": "#6631BA",
-  "iconUrl": "https://s3.amazonaws.com/exp-us-standard/icons/react-native-tab-view-icon.png",
+  "iconUrl": "https://cdn.rawgit.com/sonnylazuardi/react-native-credit-card/master/preview.png",
   "loading": {
-    "iconUrl": "https://s3.amazonaws.com/exp-us-standard/icons/react-native-tab-view-icon.png",
+    "iconUrl": "https://cdn.rawgit.com/sonnylazuardi/react-native-credit-card/master/preview.png",
     "hideExponentText": false
   },
   "packagerOpts": {
