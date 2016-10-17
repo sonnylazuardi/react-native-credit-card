@@ -6,6 +6,10 @@ React native port of the display of Card by [@jessepollak](https://github.com/je
 
 ![rn-credit-card](https://cdn.rawgit.com/sonnylazuardi/react-native-credit-card/master/demo.gif) ![rn-ios](http://i.giphy.com/l0MYFGQxfygHtBN84.gif)
 
+#### Demo
+
+![https://exp.host/@sonnylazuardi/react-native-credit-card-demos](https://exp.host/@sonnylazuardi/react-native-credit-card-demos)
+
 #### Background
 
 This is a react native port of Card. There is a [react port of Card](https://github.com/JohnyDays/react-credit-card), but it still renders on browser DOM (which is not as good as native view), so this library will take advantage of both.
