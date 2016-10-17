@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     },
     textNumber: {
         color: '#fff',
-        fontSize: 22,
+        fontSize: 21,
         textAlign: 'center',
         marginBottom: 10,
         backgroundColor: 'transparent',

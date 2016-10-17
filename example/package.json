@@ -1,0 +1,20 @@
+{
+  "name": "react-native-credit-card-example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "@exponent/vector-icons": "^1.0.1",
+    "babel-plugin-transform-react-jsx-source": "^6.9.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "exponent": "^10.0.0",
+    "react": "15.3.1",
+    "react-addons-shallow-compare": "~15.2.1",
+    "react-native": "github:exponentjs/react-native#sdk-10.0.0",
+    "react-native-credit-card": "file:..",
+    "react-native-swiper": "^1.5.1"
+  },
+  "main": "main.js"
+}
