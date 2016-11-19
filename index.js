@@ -129,7 +129,7 @@ class CreditCard extends Component {
         const isAmex = this.state.type && this.state.type.name === "amex";
         const cardStyle = [styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style];
         return (
-            <View style={styles.cardStyle}>
+            <View style={cardStyle}>
                 <FlipCard
                     style={[styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style]}
                     friction={6}
