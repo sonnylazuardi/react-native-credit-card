@@ -137,7 +137,7 @@ class CreditCard extends Component {
                     flipHorizontal={true}
                     flipVertical={false}
                     flip={this.props.focused === 'cvc'}
-                    clickable={true}
+                    clickable={this.props.clickable}
                     onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
                     >
                     <View style={[styles.front, {width: this.props.width, height: this.props.height}]}>
@@ -332,6 +332,7 @@ CreditCard.defaultProps = {
     width: 300,
     height: 180,
     bgColor: '#191278',
+    clickable: true,
 };
 
 CreditCard.CardImages = images;
