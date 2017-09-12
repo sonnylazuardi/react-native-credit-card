@@ -25,7 +25,7 @@ class CreditCard extends Component {
         super(props);
         this.state = {
             type: {
-                name:"unknown", 
+                name:"unknown",
                 length: 16
             }
         }
@@ -52,7 +52,7 @@ class CreditCard extends Component {
                 return this.setState({type: {name: type, length: 16}});
             }
         }
-        
+
         return this.setState({type: {name: "unknown", length: 16}});
     }
     number() {
@@ -152,7 +152,7 @@ class CreditCard extends Component {
                                  style={styles.logo}
                                  source={{uri: images[this.props.type ? this.props.type : this.state.type.name]}}
                             />
-                            {isAmex ? 
+                            {isAmex ?
                                 <View style={styles.cvcFront}>
                                     <Text style={styles.text}>{this.getValue("cvc")}</Text>
                                 </View>
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 8,
         borderWidth: 0,
-        flex: 1,
+        flex: null,
     },
     logo: {
         height: 35,
