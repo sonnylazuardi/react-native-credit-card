@@ -128,7 +128,7 @@ class CreditCard extends Component {
     render() {
         const isAmex = this.state.type && this.state.type.name === "amex";
         const cardStyle = [styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style];
-        const { showExpiryAfter, expiryBeforeText, expiryAfterText } = this.props;
+        const { showExpiryAfter = true, expiryBeforeText, expiryAfterText } = this.props;
         return (
             <View style={cardStyle}>
                 <FlipCard
