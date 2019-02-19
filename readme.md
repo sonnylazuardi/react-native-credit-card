@@ -71,6 +71,10 @@ import CreditCard from 'react-native-credit-card';
   - mastercard
   - visa
   - amex
+-`fullNameText`: Change the default text for FULL NAME
+-`showExpiryAfter`: boolean(show the VALID THRU text)
+-`expiryAfterText`: Change the default text for VALID THRU
+-`expiryBeforeText`: Change the default text for MONTH/YEAR
 
 #### Todo
 
