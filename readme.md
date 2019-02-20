@@ -35,7 +35,7 @@ I got the design resources from the [Ramakrishna V's dribbble](https://dribbble.
 import CreditCard from 'react-native-credit-card';
 
 
-<CreditCard 
+<CreditCard
     type={this.state.type}
     imageFront={require('./images/card-front.png')}
     imageBack={require('./images/card-back.png')}
@@ -49,15 +49,15 @@ import CreditCard from 'react-native-credit-card';
 ```
 
 ### Available props
-  
+
 - `cvc`: number(max 4 characters, will cut the rest)(The "/" will be automatically added)
 - `name`: string (max 2 lines)
 - `number`: credit card number(max 16 characters, will cut the rest)
-- `expiry`: number(max 4 characters, will cut the rest) 
-- `imageFront`: image(image file for the card front card background -- with require) 
-- `imageBack`: image(image file for the card back card background -- with require) 
-- `shiny`: boolean(show sticker) 
-- `bar`: boolean(show bar on the back) 
+- `expiry`: number(max 4 characters, will cut the rest)
+- `imageFront`: image(image file for the card front card background -- with require)
+- `imageBack`: image(image file for the card back card background -- with require)
+- `shiny`: boolean(show sticker)
+- `bar`: boolean(show bar on the back)
 - `focused`: one of the above fields
   - type
   - name
@@ -72,13 +72,14 @@ import CreditCard from 'react-native-credit-card';
   - visa
   - amex
 -`fullNameText`: Change the default text for FULL NAME
--`showExpiryAfter`: boolean(show the VALID THRU text)
--`expiryAfterText`: Change the default text for VALID THRU
+-`showExpiryBeforeLabel`: boolean(show the MONTH/YEAR text)
+-`showExpiryAfterLabel`: boolean(show the VALID THRU text)
 -`expiryBeforeText`: Change the default text for MONTH/YEAR
+-`expiryAfterText`: Change the default text for VALID THRU
 
 #### Todo
 
-- Automated test 
+- Automated test
 - More credit card type variations
 
 #### Examples
