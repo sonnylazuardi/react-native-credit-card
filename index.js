@@ -88,7 +88,7 @@ class CreditCard extends Component {
     }
     name() {
         if (this.props.name === "") {
-            return "FULL NAME";
+            return this.props.fullNameText.toUpperCase() || "FULL NAME";
         } else {
             return this.props.name.toUpperCase();
         }
@@ -128,6 +128,13 @@ class CreditCard extends Component {
     render() {
         const isAmex = this.state.type && this.state.type.name === "amex";
         const cardStyle = [styles.container, {width: this.props.width, height: this.props.height, backgroundColor: this.props.bgColor}, this.props.style];
+        const {
+            showExpiryAfterLabel = true,
+            showExpiryBeforeLabel = true,
+            expiryBeforeText,
+            expiryAfterText,
+        } = this.props;
+
         return (
             <View style={cardStyle}>
                 <FlipCard
@@ -161,12 +168,18 @@ class CreditCard extends Component {
                                 <View style={styles.number}><Text style={styles.textNumber}>{this.getValue("number")}</Text></View>
                                 <View style={styles.rowWrap}>
                                     <View style={styles.name}><Text style={styles.textName}>{this.getValue("name")}</Text></View>
-                                    <View style={styles.validthru}><Text style={styles.textValidThru}>VALID THRU</Text></View>
+                                    {showExpiryAfterLabel &&
+                                        <View style={styles.validthru}>
+                                            <Text style={styles.textValidThru}>{expiryAfterText || 'VALID THRU'}</Text>
+                                        </View>
+                                    }
                                     <View
                                         style={styles.expiry}
                                         data-before={this.props.expiryBefore}
                                         data-after={this.props.expiryAfter}>
-                                        <Text style={styles.textSmall}>MONTH/YEAR</Text>
+                                        {showExpiryBeforeLabel && 
+                                            <Text style={styles.textSmall}>{expiryBeforeText || 'MONTH/YEAR'}</Text>
+                                        }
                                         <Text style={styles.textExpiry}>{this.getValue("expiry")}</Text>
                                     </View>
                                 </View>
@@ -338,3 +351,4 @@ CreditCard.defaultProps = {
 CreditCard.CardImages = images;
 
 module.exports = CreditCard;
+
